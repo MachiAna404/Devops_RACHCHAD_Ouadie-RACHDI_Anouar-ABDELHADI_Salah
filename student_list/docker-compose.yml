@@ -1,0 +1,23 @@
+version: '3.7'
+
+services:
+  backend:
+    build:
+      context: ./simple_api  
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./data:/data  
+    environment:
+      - student_age_file_path=/data/student_age.json
+
+  frontend:
+    build:
+      context: ./website 
+    ports:
+      - "80:80"
+    depends_on:
+      - backend  
+
+
+    
