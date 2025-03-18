@@ -62,3 +62,132 @@ Nous avons également ajouté des métadonnées avec `LABEL maintainer` pour ind
 
 ---
  
+## 📜 **Explication du Dockerfile**
+
+Notre Dockerfile est conçu pour créer une image Docker légère et optimisée pour exécuter une API Python. Voici une explication détaillée de chaque instruction:
+Image de Base
+dockerfileCopyFROM python:3.8-slim-buster
+
+Utilise l'image Python 3.8 basée sur Debian Buster avec une variante "slim" qui est plus légère que l'image standard
+Cette image contient uniquement les composants essentiels de Python, réduisant ainsi la taille de l'image finale
+
+Répertoire de Travail
+dockerfileCopyWORKDIR /app
+
+Définit /app comme répertoire de travail dans le conteneur
+Toutes les commandes suivantes seront exécutées dans ce répertoire
+
+Installation des Dépendances Système
+dockerfileCopyRUN apt-get update -y && apt-get install -y \
+    python3-dev \
+    libsasl2-dev \
+    libldap2-dev \
+    libssl-dev \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+Met à jour les listes de paquets et installe les dépendances système nécessaires:
+
+python3-dev: Outils de développement Python
+libsasl2-dev: Bibliothèque pour l'authentification SASL
+libldap2-dev: Bibliothèque pour LDAP
+libssl-dev: Bibliothèque pour SSL/TLS
+
+
+Nettoie le cache apt et supprime les listes de paquets pour réduire la taille de l'image
+
+Installation des Dépendances Python
+dockerfileCopyCOPY requirements.txt .
+RUN pip3 install --no-cache-dir -r requirements.txt
+
+Copie le fichier requirements.txt qui liste toutes les dépendances Python
+Installe les dépendances avec l'option --no-cache-dir pour éviter de stocker les archives pip, réduisant ainsi la taille de l'image
+
+Copie du Code Source
+dockerfileCopyCOPY student_age.py .
+
+Copie le fichier student_age.py qui contient le code source de l'API dans le répertoire de travail
+
+Volume de Données
+dockerfileCopyVOLUME /data
+
+Crée un point de montage pour les données persistantes
+Les données stockées dans /data persisteront même si le conteneur est supprimé
+
+Exposition du Port
+dockerfileCopyEXPOSE 5000
+
+Indique que le conteneur écoutera sur le port 5000
+C'est le port sur lequel l'API sera accessible
+
+Commande de Démarrage
+dockerfileCopyCMD ["python", "./student_age.py"]
+
+Définit la commande qui sera exécutée au démarrage du conteneur
+Utilise la forme exec (tableau) qui est recommandée pour une bonne gestion des signaux
+
+Construire et Exécuter
+Pour construire l'image Docker:
+bashCopydocker build -t student-age-api .
+Pour exécuter le conteneur:
+bashCopydocker run -p 5000:5000 -v /chemin/local/vers/data:/data student-age-api
+Cette commande:
+
+Mappe le port 5000 du conteneur au port 5000 de l'hôte
+Monte un volume local dans le répertoire /data du conteneur
+
+
+---
+
+## 🚢 **Construction et Lancement du Conteneur**
+
+### 🔨 **Construire l’image Docker**
+
+```sh
+docker build -t student_api .
+```
+
+![2](https://github.com/user-attachments/assets/ee402eaa-c2c8-4b7d-9977-dc8170f2abf3)
+
+### ▶️ **Lancer le conteneur**
+
+```sh
+docker run -d -p 5000:5000 student_api
+```
+
+![3](https://github.com/user-attachments/assets/54b8f933-878d-4b53-9bd9-0f14ad36c7b1)
+
+---
+
+## 📺 **Interface graphique du conteneur Docker**
+
+> Visualisation de l’interface Docker Desktop.
+![azb](https://github.com/user-attachments/assets/1729fd02-551a-49d3-96f4-ea79977028b3)
+
+---
+
+## 🏗️ **Test de l’API**
+
+
+### 📜 **Vérifier les logs du conteneur**
+
+```sh
+docker logs <ID_du_conteneur>
+```
+
+![4](https://github.com/user-attachments/assets/21a283c4-537d-4568-b2a1-2fdbef990dfc)
+
+### 🔍 **Effectuer une requête GET sur l’API**
+
+```sh
+curl -u root:root -X GET http://localhost:5000/supmit/api/v1.0/get_student_ages
+```
+
+![5](https://github.com/user-attachments/assets/b7c9085a-9c75-4843-9c19-a205db2e6e2f)
+
+```sh
+curl -u root:root -X GET http://localhost:5000/supmit/api/v1.0/get_student_ages/<student_name>
+```
+![6](https://github.com/user-attachments/assets/8133ed1b-6713-4356-9779-f87fedefbed2)
+---
+
