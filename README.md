@@ -42,114 +42,173 @@ Le système repose sur une architecture **client-serveur** :
   - **docker-compose.yml** 📋 : La partition orchestrant l’exécution simultanée des services, créant une symphonie technologique.  
 
 ---
+## 🛠️ **Structure du Projet**
 
-## 🛠️ **Structure**
+---
 
-##📌  **Étape I  ** Construire et tester l'API
+### 📌 **Étape 1 : Construire et Tester l'API**
 
-Dans cette partie, nous allons construire et tester l’API Flask en suivant plusieurs étapes.
+Dans cette section, nous allons construire et tester notre API Flask en suivant plusieurs étapes.
 
-##✅  **Objectif  **
+---
 
-Nous avons utilisé l’image python:3.8-buster comme base pour notre conteneur. Ajout des informations du mainteneur Nous avons ajouté notre nom et email dans le Dockerfile avec LABEL maintainer.
+### ✅ **Objectif**
+
+Nous avons utilisé l’image `python:3.8-buster` comme base pour notre conteneur Docker.
+Nous avons également ajouté des métadonnées avec `LABEL maintainer` pour indiquer les informations du responsable de l’image Docker.
 
 ![1](https://github.com/user-attachments/assets/8241d778-6338-4552-8061-0784ea1cb1a2)
 
-Explication du cockerfile : 
-Le fichier Dockerfile que tu partages sert à construire une image Docker pour une application Python (dans ce cas, probablement une API utilisant Flask). Voici une explication détaillée de chaque ligne :
+---
 
-1. Utiliser l'image de base Python 3.8
+## 📜 **Explication du Dockerfile**
 
-`FROM python:3.8-buster`
- 
-FROM indique l’image de base à utiliser pour construire cette image Docker.
+Le fichier `Dockerfile` permet de construire une image Docker pour notre API Python (probablement basée sur Flask). Voici une explication détaillée ligne par ligne :
 
-Ici, l’image utilisée est python:3.8-buster, qui est une version officielle de Python 3.8 basée sur Debian Buster. Cela permet d’avoir une version stable de Python dans un environnement Debian.
+### 🏗️ **1. Utiliser une image de base Python 3.8**
 
-2. Spécifier les informations du mainteneur
+```dockerfile
+FROM python:3.8-buster
+```
 
-`LABEL maintainer="Abdelhadi_Rachdi_Rachchad <Rachchad_Rachdi_Abdelhadi@gmail.com>"`
-LABEL est utilisé pour ajouter des métadonnées à l’image Docker.
+- `FROM` définit l’image de base utilisée pour construire l’image Docker.
+- Ici, on utilise `python:3.8-buster`, qui est une version officielle de Python 3.8 basée sur Debian Buster.
 
-Dans ce cas, il spécifie le mainteneur de l’image Docker avec son nom et son adresse e-mail. Cela aide à identifier qui a créé ou maintient l’image.
+### 👤 **2. Ajouter des métadonnées (mainteneur)**
 
-3. Définir le répertoire de travail dans le conteneur
-`WORKDIR /app`
-WORKDIR définit le répertoire de travail à l'intérieur du conteneur.
+```dockerfile
+LABEL maintainer="Abdelhadi_Rachdi_Rachchad <Rachchad_Rachdi_Abdelhadi@gmail.com>"
+```
 
-Ici, le répertoire /app est créé (s'il n'existe pas déjà) et toute commande suivante (comme COPY ou RUN) sera exécutée à partir de ce répertoire.
+- `LABEL` permet d’ajouter des métadonnées.
+- Ici, il spécifie le mainteneur avec son nom et son email.
 
-4. Installer les dépendances système nécessaires
+### 📂 **3. Définir le répertoire de travail**
 
-```RUN apt update -y && apt install -y \
+```dockerfile
+WORKDIR /app
+```
+
+- `WORKDIR` définit `/app` comme répertoire de travail dans le conteneur.
+- Toutes les commandes suivantes (comme `COPY` et `RUN`) seront exécutées à partir de ce répertoire.
+
+### 🔧 **4. Installer les dépendances système**
+
+```dockerfile
+RUN apt update -y && apt install -y \
     python3-dev \
     libsasl2-dev \
     libldap2-dev \
-    libssl-dev```
-RUN exécute des commandes dans le conteneur pendant la construction de l'image.
+    libssl-dev
+```
 
-Ici, apt update -y met à jour les informations des paquets disponibles, et apt install -y installe des paquets système nécessaires :
+- `RUN` exécute des commandes dans le conteneur pendant la construction.
+- On met à jour les paquets (`apt update -y`) et installe des bibliothèques essentielles (`apt install -y`).
 
-python3-dev : fichiers de développement pour Python 3 (utile pour compiler des extensions).
+### 📜 **5. Copier et installer les dépendances Python**
 
-libsasl2-dev, libldap2-dev, libssl-dev : bibliothèques de développement pour des fonctionnalités supplémentaires comme l’authentification SASL, LDAP, et SSL, probablement nécessaires pour certaines bibliothèques Python.
+```dockerfile
+COPY requirements.txt .
+RUN pip3 install -r requirements.txt
+```
 
-5. Copier le fichier des dépendances Python dans le conteneur
+- `COPY requirements.txt .` : copie le fichier `requirements.txt` dans le conteneur.
+- `RUN pip3 install -r requirements.txt` : installe les dépendances Python nécessaires.
 
-`COPY requirements.txt .`
-COPY copie des fichiers depuis le répertoire local (dans le même répertoire que le Dockerfile) vers le conteneur.
+### 📝 **6. Copier le code source**
 
-Ici, requirements.txt, qui contient la liste des dépendances Python nécessaires, est copié dans le répertoire de travail du conteneur (/app).
+```dockerfile
+COPY student_age.py .
+```
 
-6. Installer les dépendances Python
+- `COPY student_age.py .` : copie le fichier principal de l'API dans le répertoire `/app` du conteneur.
 
-`RUN pip3 install -r requirements.txt`
+### 📁 **7. Créer un dossier pour les données persistantes**
 
-RUN pip3 install -r requirements.txt installe les dépendances Python spécifiées dans le fichier requirements.txt.
+```dockerfile
+VOLUME /data
+```
 
-Ce fichier contient généralement des bibliothèques comme Flask, Django, ou d'autres, qui seront installées dans l'environnement Python du conteneur.
+- `VOLUME` définit `/data` comme un répertoire persistant.
 
-7. Copier le code source de l'API dans le conteneur
+### 🌐 **8. Exposer le port 5000**
 
-`COPY student_age.py .`
-COPY student_age.py . copie le fichier Python student_age.py dans le répertoire de travail du conteneur (/app).
+```dockerfile
+EXPOSE 5000
+```
 
-Ce fichier est probablement l’application principale qui définit ton API Flask.
+- `EXPOSE 5000` : ouvre le port 5000 pour accéder à l’API Flask.
 
-8. Créer un dossier pour les données persistantes
+### 🚀 **9. Lancer l’API Flask**
 
-`VOLUME /data`
-VOLUME crée un point de montage pour un volume dans le conteneur.
+```dockerfile
+CMD ["python3", "./student_age.py"]
+```
 
-Ici, /data est défini comme un volume pour stocker des données persistantes. Cela permet de conserver les données même si le conteneur est supprimé, en les associant à un volume externe.
+- `CMD` définit la commande par défaut du conteneur.
+- Ici, il lance `student_age.py` avec Python.
 
-✅ Objectif :
+---
 
-Nous avons configuré le conteneur pour exposer le port 5000 afin d’accéder à l’API Flask. Construction et lancement de l’image Docker Nous avons construit l’image avec la commande : docker build -t student_api .
+## 🚢 **Construction et Lancement du Conteneur**
+
+### 🔨 **Construire l’image Docker**
+
+```sh
+docker build -t student_api .
+```
 
 ![2](https://github.com/user-attachments/assets/ee402eaa-c2c8-4b7d-9977-dc8170f2abf3)
 
+### ▶️ **Lancer le conteneur**
 
-
-Puis, nous avons lancé un conteneur avec cette commande :
+```sh
+docker run -d -p 5000:5000 student_api
+```
 
 ![3](https://github.com/user-attachments/assets/54b8f933-878d-4b53-9bd9-0f14ad36c7b1)
 
-pour l interface graphique 
-( hna photo dial docker env ) 
+---
 
+## 📺 **Interface graphique du conteneur Docker**
+
+> Visualisation de l’interface Docker Desktop.
 
 ![3](https://github.com/user-attachments/assets/fc685883-f960-4019-b39e-728212fd6054)
 
+---
 
-✅ Objectif : Nous avons testé l’API en appelant : curl -u root:root -X GET http://localhost:5000/supmit/api/v1.0/get_student_ages
+## 🏗️ **Test de l’API**
+
+### 🔍 **Effectuer une requête GET sur l’API**
+
+```sh
+curl -u root:root -X GET http://localhost:5000/supmit/api/v1.0/get_student_ages
+```
 
 ![5](https://github.com/user-attachments/assets/b7c9085a-9c75-4843-9c19-a205db2e6e2f)
 
-✅ Objectif :  Vérifiez les logs et assurez-vous que le conteneur écoute et est prêt à
-répondre.
+### 📜 **Vérifier les logs du conteneur**
+
+```sh
+docker logs <ID_du_conteneur>
+```
 
 ![6](https://github.com/user-attachments/assets/8133ed1b-6713-4356-9779-f87fedefbed2)
+
+---
+
+## 🎯 **Résumé**
+
+✅ Nous avons construit une image Docker contenant notre API Flask.
+
+✅ Nous avons lancé un conteneur exécutant cette API.
+
+✅ Nous avons testé l’API en envoyant des requêtes GET.
+
+✅ Nous avons vérifié les logs du conteneur pour assurer son bon fonctionnement.
+
+---
 
 
 
