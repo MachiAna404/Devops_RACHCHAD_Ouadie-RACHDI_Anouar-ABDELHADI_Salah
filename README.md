@@ -256,7 +256,7 @@ Apres on clique sur le bouttons : "List Student"
 Dans cette étape, nous allons créer un registre privé Docker pour stocker les images localement et les gérer via une interface web. _ Lancer le registre privé Docker
 
 ✅ Objectif :
-
+### ✅ **Objectif**
 Nous avons démarré un registre privé local pour stocker nos images Docker. docker run -d -p 5001:5000 --name registry registry:2
 
 ![1](https://github.com/user-attachments/assets/09ffd38d-6450-44ff-8d7e-b45ae85feff9)
