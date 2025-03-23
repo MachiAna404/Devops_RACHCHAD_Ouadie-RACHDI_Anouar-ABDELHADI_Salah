@@ -275,6 +275,23 @@ docker run: Lance un nouveau conteneur Docker.
 
 **registry:2:** Utilise l'image officielle registry version 2 pour créer le registre privé.
 ![3](https://github.com/user-attachments/assets/6552b4de-a14a-4a56-9b7b-280e12bab228)
+# Explication des composants
+
+## 🗂️ Service Registry
+- **Image** : Utilise l'image officielle `registry:2`
+- **Port** : Exposé sur le port 5001 de l'hôte (pour éviter les conflits avec l'API sur le port 5000)
+- **Volume** : Utilise un volume nommé `registry-data` pour persister les images stockées
+- **Redémarrage** : Configuré pour toujours redémarrer en cas d'échec
+
+## 🖥️ Service Registry UI
+- **Image** : Utilise l'image `joxit/docker-registry-ui` pour fournir une interface graphique
+- **Port** : Interface web accessible sur le port 8080
+- **Environnement** : Configure le titre et l'URL du registre
+- **Dépendances** : Démarre seulement après le démarrage du registre
+
+## 🌐 Réseau et Volume
+- **Réseau** : Un réseau dédié `registry-network` pour isoler la communication
+- **Volume** : Un volume `registry-data` pour assurer la persistance des données
 ![2](https://github.com/user-attachments/assets/f8c81c17-1465-491d-beb7-6d1a1f21db63)
 
 ### ✅ **Objectif**
@@ -305,7 +322,10 @@ Nous avons lancé une interface web pour gérer les images Docker en utilisant l
 ![Image 6](https://github.com/user-attachments/assets/d1545a63-cd36-4e60-9019-ba2cd6250720)
 ![Image 5](https://github.com/user-attachments/assets/5a78cd58-b7de-4119-8129-d904b657f5dc)
 
+FFFFFFFFFFFFFFFFFFIIIIIIIIIIIIIIIIIINNNNNNNNNNNNNNN
 
+ZBIII MATCHOFCH LI LT7T 
+HADI LA FIN 
 
 
 
