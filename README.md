@@ -266,15 +266,15 @@ Nous avons démarré un registre privé local pour stocker nos images Docker en 
 `docker run -d -p 5001:5000 --name registry registry:2`
 Voici ce que chaque partie de cette commande fait :
 
-**- -docker run:** Lance un nouveau conteneur Docker.
+-**-docker run:** Lance un nouveau conteneur Docker.
 
-**- -d:** Démarre le conteneur en arrière-plan (mode détaché).
+**-d:** Démarre le conteneur en arrière-plan (mode détaché).
 
-**- -p 5001:5000:** Mappe le port 5000 du conteneur (port par défaut du registre Docker) au port 5001 de votre machine locale. Cela permet d’accéder au registre via localhost:5001.
+-**-p 5001:5000:** Mappe le port 5000 du conteneur (port par défaut du registre Docker) au port 5001 de votre machine locale. Cela permet d’accéder au registre via localhost:5001.
 
-**- --name registry:** Attribue un nom au conteneur, ici "registry", afin de pouvoir l'identifier facilement.
+-**--name registry:** Attribue un nom au conteneur, ici "registry", afin de pouvoir l'identifier facilement.
 
-**- registry:2:** Utilise l'image officielle registry version 2 pour créer le registre privé.
+-**-registry:2:** Utilise l'image officielle registry version 2 pour créer le registre privé.
 ![3](https://github.com/user-attachments/assets/6552b4de-a14a-4a56-9b7b-280e12bab228)
 ![1](https://github.com/user-attachments/assets/09ffd38d-6450-44ff-8d7e-b45ae85feff9)
 
