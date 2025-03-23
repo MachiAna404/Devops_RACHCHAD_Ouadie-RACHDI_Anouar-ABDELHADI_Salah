@@ -52,5 +52,6 @@ Dans cette partie, nous allons construire et tester l’API Flask en suivant plu
 
 Nous avons utilisé l’image python:3.8-buster comme base pour notre conteneur. Ajout des informations du mainteneur Nous avons ajouté notre nom et email dans le Dockerfile avec LABEL maintainer.
 
-![Uploading 1360350.png…]()
+![1](https://github.com/user-attachments/assets/8241d778-6338-4552-8061-0784ea1cb1a2)
+
 
