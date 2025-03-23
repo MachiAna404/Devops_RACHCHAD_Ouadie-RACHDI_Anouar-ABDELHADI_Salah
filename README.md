@@ -241,8 +241,8 @@ Nous avons accédé au site web via [http://localhost:8080](http://localhost:808
 
 ![4 ](https://github.com/user-attachments/assets/6f9b0c73-e79f-42ac-982c-13b64eacad2a)
 
+### 📌 **Étape 3 : **
 
-##📌  **Étape III  **
 ![1](https://github.com/user-attachments/assets/09ffd38d-6450-44ff-8d7e-b45ae85feff9)
 ![2](https://github.com/user-attachments/assets/f8c81c17-1465-491d-beb7-6d1a1f21db63)
 ![3](https://github.com/user-attachments/assets/6552b4de-a14a-4a56-9b7b-280e12bab228)
