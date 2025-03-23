@@ -54,4 +54,21 @@ Nous avons utilisé l’image python:3.8-buster comme base pour notre conteneur.
 
 ![1](https://github.com/user-attachments/assets/8241d778-6338-4552-8061-0784ea1cb1a2)
 
+✅ Objectif :
+
+Nous avons configuré le conteneur pour exposer le port 5000 afin d’accéder à l’API Flask. Construction et lancement de l’image Docker Nous avons construit l’image avec la commande : docker build -t student_api .
+
+![5](https://github.com/user-attachments/assets/59af3dc7-e3b6-427c-a75e-e56f80c641b8)
+![6](https://github.com/user-attachments/assets/1a1917f7-011f-420b-9b66-4997af526aa8)
+![4](https://github.com/user-attachments/assets/99a1f485-7e27-40e4-b43c-25807f18bffb)
+![3](https://github.com/user-attachments/assets/accf26e7-a7d7-46dc-ac65-62ab16606f97)
+![2](https://github.com/user-attachments/assets/ee402eaa-c2c8-4b7d-9977-dc8170f2abf3)
+
+
+
+Puis, nous avons lancé un conteneur avec cette commande :
+
+
+
+
 
