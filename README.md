@@ -218,7 +218,9 @@ curl -u root:root -X GET http://localhost:5000/supmit/api/v1.0/get_student_ages/
 
 
 Dans cette étape, nous allons automatiser le déploiement de l’API et du site web PHP en utilisant **Docker Compose**. Création du fichier `docker-compose.yml`
-
+### ✅ **Objectif**
+Supprimez le conteneur que vous avez créé précédemment.
+![b](https://github.com/user-attachments/assets/cae77799-e900-4e3a-8766-a38ab56ccd26)
 
 ### ✅ **Objectif**
 Nous avons créé le fichier `docker-compose.yml` qui définit les services API et Website.
@@ -229,7 +231,7 @@ Nous avons créé le fichier `docker-compose.yml` qui définit les services API 
 Nous avons lancé l’application en une seule commande : `docker-compose up --build -d`
 
 ![c](https://github.com/user-attachments/assets/59eb2050-0592-4867-a43e-b67bcfef273a)
-![b](https://github.com/user-attachments/assets/cae77799-e900-4e3a-8766-a38ab56ccd26)
+
 
 ---
 
@@ -238,6 +240,8 @@ Nous avons lancé l’application en une seule commande : `docker-compose up --b
 ### ✅ **Objectif**
 
 Nous avons accédé au site web via [http://localhost:8080](http://localhost:8080) et cliqué sur "List Student" pour vérifier que l’API fonctionne.
+
+![WhatsApp Image 2025-03-23 at 6 33 44 PM](https://github.com/user-attachments/assets/1e0f7b89-6604-4853-b9ba-8096cb4c8bd3)
 
 ![4 ](https://github.com/user-attachments/assets/6f9b0c73-e79f-42ac-982c-13b64eacad2a)
 
