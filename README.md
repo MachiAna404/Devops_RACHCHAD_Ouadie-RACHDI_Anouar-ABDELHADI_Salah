@@ -118,7 +118,33 @@ Nous avons accédé au site web via http://localhost:8080 et cliqué sur "List S
 
 ![4 ](https://github.com/user-attachments/assets/6f9b0c73-e79f-42ac-982c-13b64eacad2a)
 
+##📌  **Étape III  **
+
+![WhatsApp Image 2025-03-23 at 3 00 13 PM](https://github.com/user-attachments/assets/c6f41a0b-8830-47db-83c2-3a6bc1950c55)
+
+![WhatsApp Image 2025-03-23 at 3 00 58 PM](https://github.com/user-attachments/assets/784c974e-79b3-4e8f-b554-5bd22fa6ecd4)
 
 
+![WhatsApp Image 2025-03-23 at 3 01 35 PM](https://github.com/user-attachments/assets/39ecb75f-2189-470f-851b-dc62d2097729)
+
+
+
+![WhatsApp Image 2025-03-23 at 3 10 44 PM](https://github.com/user-attachments/assets/feb1366d-997c-4fc6-ac37-d93e45f7418c)
+
+
+![WhatsApp Image 2025-03-23 at 3 11 13 PM](https://github.com/user-attachments/assets/32737dc0-20dc-431b-9b60-ceb416a5f563)
+
+
+![WhatsApp Image 2025-03-23 at 3 11 21 PM](https://github.com/user-attachments/assets/9199434f-188b-4623-958a-2ea723101bbf)
+
+![WhatsApp Image 2025-03-23 at 3 11 54 PM](https://github.com/user-attachments/assets/98abcdd1-bfa3-4b6e-9fce-a7d2c3dfa96f)
+
+![WhatsApp Image 2025-03-23 at 3 12 12 PM](https://github.com/user-attachments/assets/9dc8815a-1071-4416-9e07-aa9f2acd837d)
+
+
+![WhatsApp Image 2025-03-23 at 3 12 59 PM](https://github.com/user-attachments/assets/a226dfe8-3db1-497b-b34f-580ac14294e6)
+
+
+![WhatsApp Image 2025-03-23 at 3 13 46 PM](https://github.com/user-attachments/assets/2bee96f1-4271-4125-bd0c-400b2cf1c2a0)
 
 
