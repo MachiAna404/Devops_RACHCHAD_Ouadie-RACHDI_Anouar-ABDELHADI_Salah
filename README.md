@@ -59,23 +59,22 @@ Explication du cockerfile :
 Le fichier Dockerfile que tu partages sert à construire une image Docker pour une application Python (dans ce cas, probablement une API utilisant Flask). Voici une explication détaillée de chaque ligne :
 
 1. Utiliser l'image de base Python 3.8
-```
-FROM python:3.8-buster
-```
+
+```FROM python:3.8-buster```
+ 
 FROM indique l’image de base à utiliser pour construire cette image Docker.
 
 Ici, l’image utilisée est python:3.8-buster, qui est une version officielle de Python 3.8 basée sur Debian Buster. Cela permet d’avoir une version stable de Python dans un environnement Debian.
 
 2. Spécifier les informations du mainteneur
-```
-LABEL maintainer="Abdelhadi_Rachdi_Rachchad <Rachchad_Rachdi_Abdelhadi@gmail.com>"```
+
+```LABEL maintainer="Abdelhadi_Rachdi_Rachchad <Rachchad_Rachdi_Abdelhadi@gmail.com>"```
 LABEL est utilisé pour ajouter des métadonnées à l’image Docker.
 
 Dans ce cas, il spécifie le mainteneur de l’image Docker avec son nom et son adresse e-mail. Cela aide à identifier qui a créé ou maintient l’image.
 
 3. Définir le répertoire de travail dans le conteneur
-```
-WORKDIR /app```
+```WORKDIR /app```
 WORKDIR définit le répertoire de travail à l'intérieur du conteneur.
 
 Ici, le répertoire /app est créé (s'il n'existe pas déjà) et toute commande suivante (comme COPY ou RUN) sera exécutée à partir de ce répertoire.
@@ -96,29 +95,30 @@ python3-dev : fichiers de développement pour Python 3 (utile pour compiler des 
 libsasl2-dev, libldap2-dev, libssl-dev : bibliothèques de développement pour des fonctionnalités supplémentaires comme l’authentification SASL, LDAP, et SSL, probablement nécessaires pour certaines bibliothèques Python.
 
 5. Copier le fichier des dépendances Python dans le conteneur
-```
-COPY requirements.txt .```
+
+```COPY requirements.txt .```
 COPY copie des fichiers depuis le répertoire local (dans le même répertoire que le Dockerfile) vers le conteneur.
 
 Ici, requirements.txt, qui contient la liste des dépendances Python nécessaires, est copié dans le répertoire de travail du conteneur (/app).
 
 6. Installer les dépendances Python
-```
-RUN pip3 install -r requirements.txt```
+
+```RUN pip3 install -r requirements.txt```
+
 RUN pip3 install -r requirements.txt installe les dépendances Python spécifiées dans le fichier requirements.txt.
 
 Ce fichier contient généralement des bibliothèques comme Flask, Django, ou d'autres, qui seront installées dans l'environnement Python du conteneur.
 
 7. Copier le code source de l'API dans le conteneur
-```
-COPY student_age.py .```
+
+```COPY student_age.py .```
 COPY student_age.py . copie le fichier Python student_age.py dans le répertoire de travail du conteneur (/app).
 
 Ce fichier est probablement l’application principale qui définit ton API Flask.
 
 8. Créer un dossier pour les données persistantes
-```
-VOLUME /data```
+
+```VOLUME /data```
 VOLUME crée un point de montage pour un volume dans le conteneur.
 
 Ici, /data est défini comme un volume pour stocker des données persistantes. Cela permet de conserver les données même si le conteneur est supprimé, en les associant à un volume externe.
