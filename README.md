@@ -43,9 +43,9 @@ Le système repose sur une architecture **client-serveur** :
 
 ---
 
-## 🎨 **Aperçu Visuel : L’Art de la Technologie**
+## 🛠️ **Structure**
 
-Pour sublimer cette documentation, voici une représentation visuelle de l’architecture du projet. Une image vaut mille mots, et celle-ci incarne l’harmonie entre les composants.
+Pour sublimer cette documentation, voici une représentation visuelle de l’architecture du projet.
 
-```markdown
-![Architecture du Système](path_to_image.png)
+![Uploading 1360350.png…]()
+
