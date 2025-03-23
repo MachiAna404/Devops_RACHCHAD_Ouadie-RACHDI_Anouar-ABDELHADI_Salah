@@ -257,7 +257,7 @@ Apres on clique sur le bouttons : "List Student"
 L'étape suivante consiste donc à démarrer ce registre privé Docker sur votre machine.
 
 
-### ✅ **Objectif**
+## 📜 **Un registre Docker**
 
 Nous avons démarré un registre privé local pour stocker nos images Docker en utilisant la commande suivante :
 
@@ -316,7 +316,8 @@ Cela permet de vérifier que le registre fonctionne correctement et que vous pou
 ![6](https://github.com/user-attachments/assets/c5015693-fe8d-4dda-a762-eac1d1ade1e6)
 ![7](https://github.com/user-attachments/assets/358a3475-0847-4084-bf9e-09ce12c4c494)
 
-### ✅ **Objectif**
+
+## 📺 **Une interface web pour voir l'image poussée en tant que conteneur.**
 
 Nous avons lancé une interface web pour gérer les images Docker en utilisant l'image joxit/docker-registry-ui. Cette interface permet de visualiser et de gérer les images stockées dans notre registre privé Docker via un navigateur, facilitant ainsi l'administration des images directement depuis une interface graphique accessible localement.
 ![Image 6](https://github.com/user-attachments/assets/d1545a63-cd36-4e60-9019-ba2cd6250720)
