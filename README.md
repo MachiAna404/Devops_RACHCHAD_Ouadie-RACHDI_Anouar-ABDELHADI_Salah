@@ -87,3 +87,37 @@ répondre.
 
 
 
+
+
+
+
+
+
+
+
+📌 Étape II : Infrastructure as Code
+
+Dans cette étape, nous allons automatiser le déploiement de l’API et du site web PHP en utilisant Docker Compose. Création du fichier docker-compose.yml
+
+✅ Objectif :
+
+Nous avons créé le fichier docker-compose.yml qui définit les services API et Website.
+
+![1](https://github.com/user-attachments/assets/72be0063-0dfc-4a7c-bb69-dc91393b0d87)
+
+✅ Objectif : Nous avons lancé l’application en une seule commande : docker-compose up --build -d
+![c](https://github.com/user-attachments/assets/59eb2050-0592-4867-a43e-b67bcfef273a)
+
+
+Tester l’application
+
+✅ Objectif :
+
+Nous avons accédé au site web via http://localhost:8080 et cliqué sur "List Student" pour vérifier que l’API fonctionne.
+
+![4 ](https://github.com/user-attachments/assets/6f9b0c73-e79f-42ac-982c-13b64eacad2a)
+
+
+
+
+
