@@ -1,30 +1,35 @@
-# Devops_RACHCHAD_Ouadie-RACHDI_Anouar-ABDELHADI_Salah
-🌌 Conception et Déploiement d’un Système de Gestion des Âges Étudiants avec Docker et Flask API : Une Fusion Élégante de Technologie et d’Art
-🌟 Introduction
-1.1 L’Essence du Projet
-Plongez dans un projet innovant qui allie esthétique et fonctionnalité : un Système de Gestion des Âges des Étudiants conçu avec Flask API, PHP, et conteneurisé grâce à Docker. Ce système offre une expérience fluide pour récupérer et afficher les âges des étudiants via une API RESTful, le tout dans une interface web dynamique et visuellement captivante.
+# 🌌 **Conception et Déploiement d’un Système de Gestion des Âges Étudiants avec Docker et Flask API**
 
-1.2 Les Piliers Technologiques
-Flask (Python) 🐍 : Le cœur de l’API RESTful, orchestrant la gestion des données d’âge avec élégance.
+---
 
-PHP 🔧 : L’artisan de l’interface web, transformant les données en une expérience visuelle immersive.
+## 🌟 **Introduction**
 
-Docker 🐳 : Le maître d’œuvre, encapsulant chaque composant dans des conteneurs pour un déploiement harmonieux.
+### 1.1 **L’Essence du Projet**  
+Un système élégant pour gérer et afficher les âges des étudiants, construit avec **Flask API**, **PHP**, et conteneurisé avec **Docker**.
 
-Docker Compose 🔄 : Le chef d’orchestre, synchronisant les services pour une performance sans faille.
+---
 
-1.3 L’Art du Déploiement
-L’application est déployée avec Docker, où Flask et PHP coexistent dans des conteneurs distincts, communiquant via un réseau en pont Docker. Cette architecture modulaire et évolutive est un véritable chef-d’œuvre de modernité.
+## 🏛️ **Architecture du Système**
 
-🏛️ Architecture du Système : Une Symphonie Technologique
-2.1 Vision Globale
-Le système repose sur une architecture client-serveur :
+### 2.1 **Composants Clés**
 
-Le frontend PHP dialogue avec l’API Flask pour récupérer les données.
+#### **API Flask (`student_age.py`)**  
+Voici un extrait du code Flask pour gérer les requêtes :
 
-L’API Flask puise les informations d’âge des étudiants dans un fichier JSON.
+```python
+from flask import Flask, jsonify, request
 
-Les deux services, encapsulés dans des conteneurs Docker, interagissent harmonieusement via un réseau partagé.
+app = Flask(__name__)
 
-2.2 Les Composants Clés
-API Flask (student_age.py) 🌐
+# Données des étudiants (exemple)
+students = [
+    {"id": 1, "name": "Alice", "age": 20},
+    {"id": 2, "name": "Bob", "age": 22}
+]
+
+@app.route('/students', methods=['GET'])
+def get_students():
+    return jsonify(students)
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
