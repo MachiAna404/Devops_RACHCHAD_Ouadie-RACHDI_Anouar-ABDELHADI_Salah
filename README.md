@@ -70,6 +70,20 @@ pour l interface graphique
 ( hna photo dial docker env ) 
 
 
+![3](https://github.com/user-attachments/assets/fc685883-f960-4019-b39e-728212fd6054)
+
+
+✅ Objectif : Nous avons testé l’API en appelant : curl -u root:root -X GET http://localhost:5000/supmit/api/v1.0/get_student_ages
+
+![5](https://github.com/user-attachments/assets/b7c9085a-9c75-4843-9c19-a205db2e6e2f)
+
+✅ Objectif :  Vérifiez les logs et assurez-vous que le conteneur écoute et est prêt à
+répondre.
+
+![6](https://github.com/user-attachments/assets/8133ed1b-6713-4356-9779-f87fedefbed2)
+
+
+
 
 
 
