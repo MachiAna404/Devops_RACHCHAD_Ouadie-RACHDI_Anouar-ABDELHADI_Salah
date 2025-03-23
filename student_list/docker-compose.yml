@@ -1,0 +1,28 @@
+version: '3.8'  # Spécifie la version de Docker Compose utilisée
+
+services:
+  api:  # Service API étudiant
+    image: student-api  # Utilise l'image Docker appelée 'student-api'
+    volumes:
+      - ./simple_api/student_age.json:/data/student_age.json  # Monte le fichier JSON
+    ports:
+      - "5000:5000"  # Expose le port 5000 de l'API sur le port 5000 de l'hôte
+    networks:
+      - student-network  # Connecte l'API au réseau 'student-network'
+  website:  # Service pour le site web PHP avec Apache
+    image: php:apache  # Utilise l'image officielle PHP avec Apache intégré
+    environment:
+      - USERNAME=root  # Définit une variable d'environnement pour l'utilisateur
+      - PASSWORD=root  # Définit une variable d'environnement pour le mot de passe
+    volumes:
+      - ./website:/var/www/html  # Monte le dossier local 'website' dans le répertoire web du conteneur Apache
+    ports:
+      - "80:80"  # Expose le port 80 du conteneur (serveur Apache) sur le port 80 de l'hôte
+    depends_on:
+      - api  # S'assure que le service 'api' est démarré avant 'website'
+    networks:
+      - student-network  # Connecte le site web au même réseau que l'API
+
+networks:
+  student-network:  # Définit un réseau Docker personnalisé
+    driver: bridge  # Utilise le mode 'bridge' pour la communication entre les services
