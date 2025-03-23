@@ -44,8 +44,13 @@ Le système repose sur une architecture **client-serveur** :
 ---
 
 ## 🛠️ **Structure**
+##📌  **Étape I  ** Construire et tester l'API
 
-Pour sublimer cette documentation, voici une représentation visuelle de l’architecture du projet.
+Dans cette partie, nous allons construire et tester l’API Flask en suivant plusieurs étapes.
+
+##✅  **Objectif  **
+
+Nous avons utilisé l’image python:3.8-buster comme base pour notre conteneur. Ajout des informations du mainteneur Nous avons ajouté notre nom et email dans le Dockerfile avec LABEL maintainer.
 
 ![Uploading 1360350.png…]()
 
