@@ -57,7 +57,7 @@ Dans cette section, nous allons construire et tester notre API Flask en suivant 
 Nous avons utilisé l’image `python:3.8-buster` comme base pour notre conteneur Docker.
 Nous avons également ajouté des métadonnées avec `LABEL maintainer` pour indiquer les informations du responsable de l’image Docker.
 
-![1](https://github.com/user-attachments/assets/8241d778-6338-4552-8061-0784ea1cb1a2)
+![azq](https://github.com/user-attachments/assets/e8dbf5a5-7d32-4415-b9fc-f4d20e715810)
 
 ---
 
