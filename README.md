@@ -188,7 +188,7 @@ Nous avons accédé au site web via http://localhost:8080 et cliqué sur "List S
 
 ##📌  **Étape III  **
 
-![1](https://github.com/user-attachments/assets/5294462d-cfa7-4749-bf37-0140b8bd6ff6)
+
 
 
 
