@@ -1,4 +1,4 @@
-###### 🌌 **Conception et Déploiement d’un Système de Gestion des Âges Étudiants avec Docker et Flask API**
+# 🌌 **Conception et Déploiement d’un Système de Gestion des Âges Étudiants avec Docker et Flask API**
 
 --- 
 
@@ -46,7 +46,7 @@ Le système repose sur une architecture **client-serveur** :
 
 ---
 
-#### 📌 **Étape 1 : Construire et Tester l'API**
+# 📌 **Étape 1 : Construire et Tester l'API**
 
 Dans cette section, nous allons construire et tester notre API Flask en suivant plusieurs étapes.
 
@@ -214,7 +214,7 @@ curl -u root:root -X GET http://localhost:5000/supmit/api/v1.0/get_student_ages/
 
 ---
 
-#### 📌 **Étape 2 : Infrastructure as Code**
+# 📌 **Étape 2 : Infrastructure as Code**
 
 
 Dans cette étape, nous allons automatiser le déploiement de l’API et du site web PHP en utilisant **Docker Compose**. Création du fichier `docker-compose.yml`
@@ -250,7 +250,7 @@ Apres on clique sur le bouttons : "List Student"
 
 ---
 
-#### 📌 **Étape 3 : Docker Registry**
+# 📌 **Étape 3 : Docker Registry**
 
 À cette étape, nous allons configurer un registre Docker privé. Un registre privé est un espace de stockage sécurisé où vous pouvez héberger et gérer vos images Docker localement, sans avoir à utiliser un service externe comme Docker Hub. Une fois le registre configuré, vous pourrez y pousser (envoyer) vos images Docker et les récupérer facilement. De plus, vous pourrez gérer ce registre à travers une interface web, ce qui facilitera l'administration et l'accès aux images stockées.
 
