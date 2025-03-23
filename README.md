@@ -107,6 +107,7 @@ Nous avons créé le fichier docker-compose.yml qui définit les services API et
 
 ✅ Objectif : Nous avons lancé l’application en une seule commande : docker-compose up --build -d
 ![c](https://github.com/user-attachments/assets/59eb2050-0592-4867-a43e-b67bcfef273a)
+![b](https://github.com/user-attachments/assets/cae77799-e900-4e3a-8766-a38ab56ccd26)
 
 
 Tester l’application
