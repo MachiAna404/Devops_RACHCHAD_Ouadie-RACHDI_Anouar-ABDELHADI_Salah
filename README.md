@@ -173,8 +173,7 @@ docker run -d -p 5000:5000 student_api
 ## 📺 **Interface graphique du conteneur Docker**
 
 > Visualisation de l’interface Docker Desktop.
-
-![3](https://github.com/user-attachments/assets/fc685883-f960-4019-b39e-728212fd6054)
+![azb](https://github.com/user-attachments/assets/1729fd02-551a-49d3-96f4-ea79977028b3)
 
 ---
 
