@@ -258,7 +258,7 @@ Dans cette étape, nous allons créer un registre privé Docker pour stocker les
 ✅ Objectif :
 
 Nous avons démarré un registre privé local pour stocker nos images Docker. docker run -d -p 5001:5000 --name registry registry:2
-![3](https://github.com/user-attachments/assets/6552b4de-a14a-4a56-9b7b-280e12bab228)
+
 ![1](https://github.com/user-attachments/assets/09ffd38d-6450-44ff-8d7e-b45ae85feff9)
 
 Capture d'écran 2025-03-21 125124
@@ -276,7 +276,84 @@ Nous avons lancé une interface web pour gérer les images Docker avec :
 
 
 
-kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
+
+
+
+![9](https://github.com/user-attachments/assets/350116e1-f3dd-4c04-998c-5d07ff7f9575)
+
+![10](https://github.com/user-attachments/assets/9cf3d2a4-2a68-4200-88ac-9a7140cbde52)
+
+Partie III: Docker Registry
+Introduction
+Cette partie du projet consiste à déployer un registre Docker privé et à y stocker les images construites. Le registre Docker est un outil essentiel dans un environnement de développement et de déploiement, car il permet de stocker, gérer et distribuer des images Docker de manière centralisée. Dans notre cas, nous utilisons un registre local pour simplifier le processus de déploiement de l'application SUPMIT.
+Architecture de la solution
+Notre solution comprend deux services principaux :
+
+Registry : le registre Docker lui-même, qui stocke les images
+Registry UI : une interface web pour visualiser et gérer facilement les images stockées
+
+Configuration du registre Docker
+Fichier docker-compose-registry.yml
+Le fichier docker-compose-registry.yml définit l'infrastructure nécessaire pour notre registre Docker :
+![3](https://github.com/user-attachments/assets/6552b4de-a14a-4a56-9b7b-280e12bab228)
+
+
+Explication des composants
+1. Service Registry
+
+Image : Utilise l'image officielle registry:2
+Port : Exposé sur le port 5001 de l'hôte (pour éviter les conflits avec l'API sur le port 5000)
+Volume : Utilise un volume nommé registry-data pour persister les images stockées
+Redémarrage : Configuré pour toujours redémarrer en cas d'échec
+
+2. Service Registry UI
+
+Image : Utilise l'image joxit/docker-registry-ui pour fournir une interface graphique
+Port : Interface web accessible sur le port 8080
+Environnement : Configure le titre et l'URL du registre
+Dépendances : Démarre seulement après le démarrage du registre
+
+3. Réseau et Volume
+
+Réseau : Un réseau dédié registry-network pour isoler la communication
+Volume : Un volume registry-data pour assurer la persistance des données
+
+Étapes d'implémentation
+1. Démarrage des services
+bashCopydocker-compose -f docker-compose-registry.yml up -d
+Cette commande démarre les services définis dans le fichier docker-compose-registry.yml en mode détaché.
+2. Construction de l'image API (si nécessaire)
+Si l'image API n'est pas encore construite, nous la construisons à l'aide du Dockerfile :
+bashCopydocker build -t supmit/api:latest -f 1.dockerfile .
+3. Publication de l'image sur le registre
+bashCopy# Tagger l'image pour qu'elle soit associée au registre local
+docker tag supmit/api:latest localhost:5001/supmit/api:latest
+
+# Pousser l'image vers le registre local
+docker push localhost:5001/supmit/api:latest
+4. Vérification
+Pour vérifier que l'image a bien été poussée vers le registre, nous pouvons utiliser :
+bashCopycurl http://localhost:5001/v2/_catalog
+Cette commande affiche la liste des images stockées dans le registre.
+Avantages de cette solution
+
+Centralisation : Toutes les images sont stockées à un seul endroit, facilitant la gestion des versions
+Visualisation : L'interface web permet de visualiser facilement les images disponibles
+Persistance : Les données sont persistées grâce à l'utilisation d'un volume Docker
+Isolation : L'utilisation d'un réseau dédié améliore la sécurité
+Infrastructure as Code : La configuration est entièrement définie comme code, ce qui facilite le déploiement et la documentation
+
+Contribution à l'objectif du projet
+Cette solution répond parfaitement aux besoins de SUPMIT en offrant :
+
+Un système évolutif et facilement déployable
+Une automatisation du processus de gestion des images
+Une infrastructure "découplée" basée sur Docker
+Une meilleure gestion des versions de la release de l'infrastructure
+
+En déployant ce registre Docker privé, nous contribuons à résoudre les problèmes de déploiement rencontrés par SUPMIT et à améliorer l'agilité de leur ferme logicielle.
+
+
 ![2](https://github.com/user-attachments/assets/f8c81c17-1465-491d-beb7-6d1a1f21db63)
 ![3](https://github.com/user-attachments/assets/6552b4de-a14a-4a56-9b7b-280e12bab228)
 ![4](https://github.com/user-attachments/assets/e898b1bb-bbae-453a-b82d-17e43235c63c)
@@ -284,15 +361,6 @@ kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
 ![6](https://github.com/user-attachments/assets/c5015693-fe8d-4dda-a762-eac1d1ade1e6)
 ![7](https://github.com/user-attachments/assets/358a3475-0847-4084-bf9e-09ce12c4c494)
 ![8](https://github.com/user-attachments/assets/b4b141f4-9aa3-45d6-b856-6725185db58b)
-
-![9](https://github.com/user-attachments/assets/350116e1-f3dd-4c04-998c-5d07ff7f9575)
-
-![10](https://github.com/user-attachments/assets/9cf3d2a4-2a68-4200-88ac-9a7140cbde52)
-
-
-
-
-
 
 
 
