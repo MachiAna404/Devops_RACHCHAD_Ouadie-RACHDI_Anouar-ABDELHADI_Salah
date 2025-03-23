@@ -175,9 +175,6 @@ docker run -d -p 5000:5000 student_api
 > Visualisation de l’interface Docker Desktop.
 ![azb](https://github.com/user-attachments/assets/1729fd02-551a-49d3-96f4-ea79977028b3)
 
-> Vérification et suivi des logs du conteneur Docker
-![4](https://github.com/user-attachments/assets/21a283c4-537d-4568-b2a1-2fdbef990dfc)
-
 ---
 
 ## 🏗️ **Test de l’API**
@@ -189,14 +186,14 @@ curl -u root:root -X GET http://localhost:5000/supmit/api/v1.0/get_student_ages
 ```
 
 ![5](https://github.com/user-attachments/assets/b7c9085a-9c75-4843-9c19-a205db2e6e2f)
-
+![6](https://github.com/user-attachments/assets/8133ed1b-6713-4356-9779-f87fedefbed2)
 ### 📜 **Vérifier les logs du conteneur**
 
 ```sh
 docker logs <ID_du_conteneur>
 ```
 
-![6](https://github.com/user-attachments/assets/8133ed1b-6713-4356-9779-f87fedefbed2)
+![4](https://github.com/user-attachments/assets/21a283c4-537d-4568-b2a1-2fdbef990dfc)
 
 
 ---
