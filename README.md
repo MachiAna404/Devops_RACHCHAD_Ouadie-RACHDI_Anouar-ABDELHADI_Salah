@@ -253,11 +253,28 @@ Apres on clique sur le bouttons : "List Student"
 ### 📌 **Étape 3**
 
 
-Dans cette étape, nous allons créer un registre privé Docker pour stocker les images localement et les gérer via une interface web. _ Lancer le registre privé Docker
+À cette étape, nous allons configurer un registre Docker privé. Un registre privé est un espace de stockage sécurisé où vous pouvez héberger et gérer vos images Docker localement, sans avoir à utiliser un service externe comme Docker Hub. Une fois le registre configuré, vous pourrez y pousser (envoyer) vos images Docker et les récupérer facilement. De plus, vous pourrez gérer ce registre à travers une interface web, ce qui facilitera l'administration et l'accès aux images stockées.
 
-✅ Objectif :
+L'étape suivante consiste donc à démarrer ce registre privé Docker sur votre machine.
+### ✅ **Objectif**
 
 Nous avons démarré un registre privé local pour stocker nos images Docker. docker run -d -p 5001:5000 --name registry registry:2
+
+Nous avons démarré un registre privé local pour stocker nos images Docker en utilisant la commande suivante :
+
+
+`docker run -d -p 5001:5000 --name registry registry:2`
+Voici ce que chaque partie de cette commande fait :
+
+**- -docker run:** Lance un nouveau conteneur Docker.
+
+**- -d:** Démarre le conteneur en arrière-plan (mode détaché).
+
+**- -p 5001:5000:** Mappe le port 5000 du conteneur (port par défaut du registre Docker) au port 5001 de votre machine locale. Cela permet d’accéder au registre via localhost:5001.
+
+**- --name registry:** Attribue un nom au conteneur, ici "registry", afin de pouvoir l'identifier facilement.
+
+**- registry:2:** Utilise l'image officielle registry version 2 pour créer le registre privé.
 ![3](https://github.com/user-attachments/assets/6552b4de-a14a-4a56-9b7b-280e12bab228)
 ![1](https://github.com/user-attachments/assets/09ffd38d-6450-44ff-8d7e-b45ae85feff9)
 
