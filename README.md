@@ -247,9 +247,36 @@ Apres on clique sur le bouttons : "List Student"
 
 ![4 ](https://github.com/user-attachments/assets/6f9b0c73-e79f-42ac-982c-13b64eacad2a)
 
-### 📌 **Étape 3 : **
 
+---
+
+### 📌 **Étape 3**
+
+
+Dans cette étape, nous allons créer un registre privé Docker pour stocker les images localement et les gérer via une interface web. _ Lancer le registre privé Docker
+
+✅ Objectif :
+
+Nous avons démarré un registre privé local pour stocker nos images Docker. docker run -d -p 5001:5000 --name registry registry:2
+![3](https://github.com/user-attachments/assets/6552b4de-a14a-4a56-9b7b-280e12bab228)
 ![1](https://github.com/user-attachments/assets/09ffd38d-6450-44ff-8d7e-b45ae85feff9)
+
+Capture d'écran 2025-03-21 125124
+✅ Objectif :
+
+Nous avons vérifié si le registre privé fonctionne bien avec : _ Tagger l’image et l’envoyer au registre privé docker push localhost:5001/student_api
+![6](https://github.com/user-attachments/assets/c5015693-fe8d-4dda-a762-eac1d1ade1e6)
+![7](https://github.com/user-attachments/assets/358a3475-0847-4084-bf9e-09ce12c4c494)
+
+✅ Objectif :
+
+Nous avons lancé une interface web pour gérer les images Docker avec :
+![Image 6](https://github.com/user-attachments/assets/d1545a63-cd36-4e60-9019-ba2cd6250720)
+![Image 5](https://github.com/user-attachments/assets/5a78cd58-b7de-4119-8129-d904b657f5dc)
+
+
+
+
 ![2](https://github.com/user-attachments/assets/f8c81c17-1465-491d-beb7-6d1a1f21db63)
 ![3](https://github.com/user-attachments/assets/6552b4de-a14a-4a56-9b7b-280e12bab228)
 ![4](https://github.com/user-attachments/assets/e898b1bb-bbae-453a-b82d-17e43235c63c)
