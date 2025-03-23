@@ -188,31 +188,15 @@ Nous avons accédé au site web via http://localhost:8080 et cliqué sur "List S
 
 ##📌  **Étape III  **
 
-![WhatsApp Image 2025-03-23 at 3 00 13 PM](https://github.com/user-attachments/assets/c6f41a0b-8830-47db-83c2-3a6bc1950c55)
-
-![WhatsApp Image 2025-03-23 at 3 00 58 PM](https://github.com/user-attachments/assets/784c974e-79b3-4e8f-b554-5bd22fa6ecd4)
-
-
-![WhatsApp Image 2025-03-23 at 3 01 35 PM](https://github.com/user-attachments/assets/39ecb75f-2189-470f-851b-dc62d2097729)
-
-
-
-![WhatsApp Image 2025-03-23 at 3 10 44 PM](https://github.com/user-attachments/assets/feb1366d-997c-4fc6-ac37-d93e45f7418c)
-
-
-![WhatsApp Image 2025-03-23 at 3 11 13 PM](https://github.com/user-attachments/assets/32737dc0-20dc-431b-9b60-ceb416a5f563)
-
-
-![WhatsApp Image 2025-03-23 at 3 11 21 PM](https://github.com/user-attachments/assets/9199434f-188b-4623-958a-2ea723101bbf)
-
-![WhatsApp Image 2025-03-23 at 3 11 54 PM](https://github.com/user-attachments/assets/98abcdd1-bfa3-4b6e-9fce-a7d2c3dfa96f)
-
-![WhatsApp Image 2025-03-23 at 3 12 12 PM](https://github.com/user-attachments/assets/9dc8815a-1071-4416-9e07-aa9f2acd837d)
-
-
-![WhatsApp Image 2025-03-23 at 3 12 59 PM](https://github.com/user-attachments/assets/a226dfe8-3db1-497b-b34f-580ac14294e6)
-
-
-![WhatsApp Image 2025-03-23 at 3 13 46 PM](https://github.com/user-attachments/assets/2bee96f1-4271-4125-bd0c-400b2cf1c2a0)
+![10](https://github.com/user-attachments/assets/66937b80-55ac-4e16-9e7d-668ab582f3b0)
+![9](https://github.com/user-attachments/assets/0fa1e021-c5c8-4e5d-bf98-6cc2c51fc433)
+![8](https://github.com/user-attachments/assets/5edb61e9-7d24-45cb-ad0a-51ba039873a9)
+![7](https://github.com/user-attachments/assets/0ba28d18-a874-4864-bd73-c6d591dbd324)
+![6](https://github.com/user-attachments/assets/3659b4cf-2687-44d7-88c2-53c863633008)
+![5](https://github.com/user-attachments/assets/05b701c1-f949-4702-9c96-20e5e29ec8c9)
+![4](https://github.com/user-attachments/assets/51cf827a-eb65-4555-976d-125103657228)
+![3](https://github.com/user-attachments/assets/2f4df5d0-c508-4b61-b364-8e42eae05d8f)
+![2](https://github.com/user-attachments/assets/f105caf6-ac93-4945-942e-1c50154c3e88)
+![1](https://github.com/user-attachments/assets/2f5aaa8d-5392-4f96-9edf-1001309c1c18)
 
 
