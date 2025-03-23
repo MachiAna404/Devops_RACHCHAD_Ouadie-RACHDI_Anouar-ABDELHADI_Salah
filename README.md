@@ -175,6 +175,9 @@ docker run -d -p 5000:5000 student_api
 > Visualisation de l’interface Docker Desktop.
 ![azb](https://github.com/user-attachments/assets/1729fd02-551a-49d3-96f4-ea79977028b3)
 
+> Vérification et suivi des logs du conteneur Docker
+![4](https://github.com/user-attachments/assets/21a283c4-537d-4568-b2a1-2fdbef990dfc)
+
 ---
 
 ## 🏗️ **Test de l’API**
