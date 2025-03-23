@@ -243,6 +243,24 @@ Nous avons accédé au site web via [http://localhost:8080](http://localhost:808
 
 
 ##📌  **Étape III  **
+![1](https://github.com/user-attachments/assets/09ffd38d-6450-44ff-8d7e-b45ae85feff9)
+![2](https://github.com/user-attachments/assets/f8c81c17-1465-491d-beb7-6d1a1f21db63)
+![3](https://github.com/user-attachments/assets/6552b4de-a14a-4a56-9b7b-280e12bab228)
+![4](https://github.com/user-attachments/assets/e898b1bb-bbae-453a-b82d-17e43235c63c)
+![5](https://github.com/user-attachments/assets/a5a1ca32-7435-4382-81e0-7d03a9d65d62)
+![6](https://github.com/user-attachments/assets/c5015693-fe8d-4dda-a762-eac1d1ade1e6)
+![7](https://github.com/user-attachments/assets/358a3475-0847-4084-bf9e-09ce12c4c494)
+![8](https://github.com/user-attachments/assets/b4b141f4-9aa3-45d6-b856-6725185db58b)
+
+![9](https://github.com/user-attachments/assets/350116e1-f3dd-4c04-998c-5d07ff7f9575)
+
+![10](https://github.com/user-attachments/assets/9cf3d2a4-2a68-4200-88ac-9a7140cbde52)
+
+
+
+
+
+
 
 
 
