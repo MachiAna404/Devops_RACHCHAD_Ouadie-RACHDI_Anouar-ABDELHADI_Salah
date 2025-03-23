@@ -252,25 +252,56 @@ Apres on clique sur le bouttons : "List Student"
 
 ### 📌 **Étape 3**
 
+À cette étape, nous allons configurer un registre Docker privé. Un registre privé est un espace de stockage sécurisé où vous pouvez héberger et gérer vos images Docker localement, sans avoir à utiliser un service externe comme Docker Hub. Une fois le registre configuré, vous pourrez y pousser (envoyer) vos images Docker et les récupérer facilement. De plus, vous pourrez gérer ce registre à travers une interface web, ce qui facilitera l'administration et l'accès aux images stockées.
 
-Dans cette étape, nous allons créer un registre privé Docker pour stocker les images localement et les gérer via une interface web. _ Lancer le registre privé Docker
+L'étape suivante consiste donc à démarrer ce registre privé Docker sur votre machine.
 
-✅ Objectif :
+
 ### ✅ **Objectif**
-Nous avons démarré un registre privé local pour stocker nos images Docker. docker run -d -p 5001:5000 --name registry registry:2
 
+Nous avons démarré un registre privé local pour stocker nos images Docker en utilisant la commande suivante :
+
+
+`docker run -d -p 5001:5000 --name registry registry:2`
+Voici ce que chaque partie de cette commande fait :
+
+docker run: Lance un nouveau conteneur Docker.
+
+**-d:** Démarre le conteneur en arrière-plan (mode détaché).
+
+**-p 5001:5000:** Mappe le port 5000 du conteneur (port par défaut du registre Docker) au port 5001 de votre machine locale. Cela permet d’accéder au registre via localhost:5001.
+
+**--name registry:** Attribue un nom au conteneur, ici "registry", afin de pouvoir l'identifier facilement.
+
+**registry:2:** Utilise l'image officielle registry version 2 pour créer le registre privé.
 ![1](https://github.com/user-attachments/assets/09ffd38d-6450-44ff-8d7e-b45ae85feff9)
 
-Capture d'écran 2025-03-21 125124
-✅ Objectif :
+
+### ✅ **Objectif**
 
 Nous avons vérifié si le registre privé fonctionne bien avec : _ Tagger l’image et l’envoyer au registre privé docker push localhost:5001/student_api
+
+Nous avons vérifié que le registre privé fonctionne correctement en taguant une image Docker et en l'envoyant vers ce registre privé avec la commande suivante :
+
+
+`docker push localhost:5001/student_api`
+Voici ce que fait chaque étape :
+
+Tagger l'image : Avant de pousser une image vers le registre privé, nous devons d'abord la taguer avec l'adresse de notre registre local. Par exemple, pour l'image student_api, nous utilisons la commande suivante pour la taguer :
+
+
+`docker tag student_api localhost:5001/student_api`
+Cela associe l'image student_api au registre privé qui tourne sur localhost:5001.
+
+Envoyer l'image au registre privé : Ensuite, nous utilisons la commande docker push pour envoyer l'image taggée vers le registre privé. Cette commande pousse l'image vers localhost:5001/student_api, qui est notre registre local.
+
+Cela permet de vérifier que le registre fonctionne correctement et que vous pouvez envoyer (push) vos images Docker dedans pour les stocker et les utiliser plus tard.
 ![6](https://github.com/user-attachments/assets/c5015693-fe8d-4dda-a762-eac1d1ade1e6)
 ![7](https://github.com/user-attachments/assets/358a3475-0847-4084-bf9e-09ce12c4c494)
 
-✅ Objectif :
+### ✅ **Objectif**
 
-Nous avons lancé une interface web pour gérer les images Docker avec :
+Nous avons lancé une interface web pour gérer les images Docker en utilisant l'image joxit/docker-registry-ui. Cette interface permet de visualiser et de gérer les images stockées dans notre registre privé Docker via un navigateur, facilitant ainsi l'administration des images directement depuis une interface graphique accessible localement.
 ![Image 6](https://github.com/user-attachments/assets/d1545a63-cd36-4e60-9019-ba2cd6250720)
 ![Image 5](https://github.com/user-attachments/assets/5a78cd58-b7de-4119-8129-d904b657f5dc)
 
