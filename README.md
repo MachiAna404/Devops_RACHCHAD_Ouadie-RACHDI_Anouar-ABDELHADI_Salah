@@ -179,14 +179,7 @@ docker run -d -p 5000:5000 student_api
 
 ## 🏗️ **Test de l’API**
 
-### 🔍 **Effectuer une requête GET sur l’API**
 
-```sh
-curl -u root:root -X GET http://localhost:5000/supmit/api/v1.0/get_student_ages
-```
-
-![5](https://github.com/user-attachments/assets/b7c9085a-9c75-4843-9c19-a205db2e6e2f)
-![6](https://github.com/user-attachments/assets/8133ed1b-6713-4356-9779-f87fedefbed2)
 ### 📜 **Vérifier les logs du conteneur**
 
 ```sh
@@ -195,7 +188,14 @@ docker logs <ID_du_conteneur>
 
 ![4](https://github.com/user-attachments/assets/21a283c4-537d-4568-b2a1-2fdbef990dfc)
 
+### 🔍 **Effectuer une requête GET sur l’API**
 
+```sh
+curl -u root:root -X GET http://localhost:5000/supmit/api/v1.0/get_student_ages
+```
+
+![5](https://github.com/user-attachments/assets/b7c9085a-9c75-4843-9c19-a205db2e6e2f)
+![6](https://github.com/user-attachments/assets/8133ed1b-6713-4356-9779-f87fedefbed2)
 ---
 
 
