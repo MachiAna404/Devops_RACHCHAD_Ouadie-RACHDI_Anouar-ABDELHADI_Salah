@@ -196,17 +196,6 @@ docker logs <ID_du_conteneur>
 
 ![6](https://github.com/user-attachments/assets/8133ed1b-6713-4356-9779-f87fedefbed2)
 
----
-
-## 🎯 **Résumé**
-
-✅ Nous avons construit une image Docker contenant notre API Flask.
-
-✅ Nous avons lancé un conteneur exécutant cette API.
-
-✅ Nous avons testé l’API en envoyant des requêtes GET.
-
-✅ Nous avons vérifié les logs du conteneur pour assurer son bon fonctionnement.
 
 ---
 
