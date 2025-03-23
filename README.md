@@ -188,15 +188,7 @@ Nous avons accédé au site web via http://localhost:8080 et cliqué sur "List S
 
 ##📌  **Étape III  **
 
-![10](https://github.com/user-attachments/assets/66937b80-55ac-4e16-9e7d-668ab582f3b0)
-![9](https://github.com/user-attachments/assets/0fa1e021-c5c8-4e5d-bf98-6cc2c51fc433)
-![8](https://github.com/user-attachments/assets/5edb61e9-7d24-45cb-ad0a-51ba039873a9)
-![7](https://github.com/user-attachments/assets/0ba28d18-a874-4864-bd73-c6d591dbd324)
-![6](https://github.com/user-attachments/assets/3659b4cf-2687-44d7-88c2-53c863633008)
-![5](https://github.com/user-attachments/assets/05b701c1-f949-4702-9c96-20e5e29ec8c9)
-![4](https://github.com/user-attachments/assets/51cf827a-eb65-4555-976d-125103657228)
-![3](https://github.com/user-attachments/assets/2f4df5d0-c508-4b61-b364-8e42eae05d8f)
-![2](https://github.com/user-attachments/assets/f105caf6-ac93-4945-942e-1c50154c3e88)
-![1](https://github.com/user-attachments/assets/2f5aaa8d-5392-4f96-9edf-1001309c1c18)
+![1](https://github.com/user-attachments/assets/5294462d-cfa7-4749-bf37-0140b8bd6ff6)
+
 
 
