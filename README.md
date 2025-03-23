@@ -274,7 +274,7 @@ docker run: Lance un nouveau conteneur Docker.
 **--name registry:** Attribue un nom au conteneur, ici "registry", afin de pouvoir l'identifier facilement.
 
 **registry:2:** Utilise l'image officielle registry version 2 pour créer le registre privé.
-![1](https://github.com/user-attachments/assets/09ffd38d-6450-44ff-8d7e-b45ae85feff9)
+![3](https://github.com/user-attachments/assets/6552b4de-a14a-4a56-9b7b-280e12bab228)
 
 
 ### ✅ **Objectif**
