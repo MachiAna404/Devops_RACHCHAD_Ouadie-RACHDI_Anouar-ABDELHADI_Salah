@@ -21,7 +21,7 @@ COPY requirements.txt .
 RUN pip3 install -r requirements.txt
 
 # Copier le code source de l'API dans le conteneur
-COPY app.py .
+COPY student_age.py .
 
 # Créer un dossier pour les données persistantes
 VOLUME /data
@@ -30,5 +30,5 @@ VOLUME /data
 EXPOSE 5000
 
 # Commande pour démarrer l'API avec Flask
-CMD ["python3", "app.py"]
+CMD ["python3", " student_age.py"]
 
