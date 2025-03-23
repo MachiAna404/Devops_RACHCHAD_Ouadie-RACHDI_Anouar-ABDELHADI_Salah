@@ -2,7 +2,7 @@
 FROM python:3.8-buster
 
 # Spécifier les informations du mainteneur
-LABEL maintainer="Ouadie <rachadwadie@gmail.com>"
+LABEL maintainer="Abdelhadi_Rachdi_Rachchad <Rachchad_Rachdi_Abdelhadi@gmail.com>"
 
 # Définir le répertoire de travail dans le conteneur
 WORKDIR /app
