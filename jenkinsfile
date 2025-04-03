@@ -1,0 +1,111 @@
+pipeline {
+    agent any
+    
+    environment {
+        DOCKER_REGISTRY = 'docker.io'
+        DOCKER_IMAGE_FRONTEND = 'salah/frontend:1.0'
+        DOCKER_IMAGE_BACKEND = 'salah/backend:1.0'
+
+        // AWS deployment configuration
+        AWS_EC2_INSTANCE = 'ec2-user@54.252.208.13' 
+        EC2_INSTANCE_ID = 'i-07041a93aabb550d7'
+        EC2_INSTANCE_NAME = 'hello-world-ec2'
+        EC2_PRIVATE_KEY = credentials('AWS_SSH_CREDENTIAL')
+        EC2_REGION = 'ap-southeast-2'
+        VPC_ID = 'vpc-d430deb2'
+        SUBNET_ID = 'subnet-1d867d55'
+        EC2_INSTANCE_TYPE = 't2.micro'
+    }
+    
+    stages {
+        stage('Clone Repository') {
+            steps {
+                git branch: 'main', url: 'https://github.com/MachiAna404/Devops_RACHCHAD_Ouadie-RACHDI_Anouar-ABDELHADI_Salah.git'
+            }
+        }
+        
+        stage('Build Docker Images') {
+            parallel {
+                stage('Frontend Image') {
+                    steps {
+                        script {
+                            sh 'docker build -t ${DOCKER_IMAGE_FRONTEND} ./website'
+                        }
+                    }
+                }
+                
+                stage('Backend Image') {
+                    steps {
+                        script {
+                            sh 'docker build -t ${DOCKER_IMAGE_BACKEND} ./simple_api'
+                        }
+                    }
+                }
+            }
+        }
+        
+        stage('Push Images to Docker Hub') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', 
+                                usernameVariable: 'DOCKER_USER', 
+                                passwordVariable: 'DOCKER_PASSWORD')]) {
+                    script {
+                        sh 'echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USER}" --password-stdin'
+                        sh 'docker push ${DOCKER_IMAGE_FRONTEND}'
+                        sh 'docker push ${DOCKER_IMAGE_BACKEND}'
+                    }
+                }
+            }
+        }
+        
+        stage('Deploy to AWS EC2') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', 
+                               usernameVariable: 'DOCKER_USERNAME', 
+                               passwordVariable: 'DOCKER_PASSWORD')]) {
+                    script {
+                        // Copy data file to EC2
+                        sh """
+                            scp -i ${EC2_PRIVATE_KEY} -o StrictHostKeyChecking=no \
+                                simple_api/student_age.json ${AWS_EC2_INSTANCE}:/home/ec2-user/student_age.json
+                            
+                            # Connect to EC2 and perform deployment
+                            ssh -i ${EC2_PRIVATE_KEY} -o StrictHostKeyChecking=no ${AWS_EC2_INSTANCE} '
+                                # Login to Docker Hub
+                                echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
+                                
+                                # Pull latest images
+                                docker pull ${DOCKER_REGISTRY}/${DOCKER_IMAGE_FRONTEND}
+                                docker pull ${DOCKER_REGISTRY}/${DOCKER_IMAGE_BACKEND}
+                                
+                                # Stop and remove existing containers
+                                docker stop frontend backend || true
+                                docker rm frontend backend || true
+                                
+                                # Start new containers
+                                docker run -d -p 5000:5000 --name backend \
+                                    -v /home/ec2-user/data:/data \
+                                    ${DOCKER_REGISTRY}/${DOCKER_IMAGE_BACKEND}
+                                
+                                docker run -d -p 80:80 --name frontend \
+                                    ${DOCKER_REGISTRY}/${DOCKER_IMAGE_FRONTEND}
+                                
+                                # Copy data file into backend container
+                                docker cp /home/ec2-user/student_age.json backend:/data
+                            '
+                        """
+                    }
+                }
+            }
+        }
+    }
+    
+    post {
+        success {
+            echo 'Deployment completed successfully.'
+        }
+        failure {
+            echo 'Deployment failed.'
+        }
+    }
+}
