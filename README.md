@@ -326,130 +326,164 @@ Nous avons lancé une interface web pour gérer les images Docker en utilisant l
 
 
 
-📦 Jenkins Pipeline Explanation
-This project uses a Jenkins Declarative Pipeline to automate the build, push, and deployment process for a Dockerized frontend and backend application. Below is a detailed breakdown of each part of the pipeline:
+# Déploiement Automatisé d'une Application Web avec CI/CD sur Jenkins et AWS
 
-⚙️ Pipeline Overview
+## 📋 Description du Projet
+Ce projet implémente un pipeline CI/CD complet pour déployer une application web (frontend + backend) sur AWS EC2 en utilisant Jenkins. Le processus inclut la construction d'images Docker, leur publication sur Docker Hub, et le déploiement automatisé sur une instance EC2 avec gestion des données.
 
-pipeline {
-    agent any
-agent any: This tells Jenkins to run the pipeline on any available agent (node).
+---
 
-🌐 Environment Variables
+## 🛠 Prérequis Techniques
 
-environment {
-    DOCKER_REGISTRY = 'docker.io'
-    DOCKER_IMAGE_FRONTEND = 'salah/frontend:1.0'
-    DOCKER_IMAGE_BACKEND = 'salah/backend:1.0'
-    AWS_EC2_INSTANCE = 'ec2-user@51.20.193.248'
-    EC2_PRIVATE_KEY = credentials('AWS_SSH_CREDENTIAL')
-}
-DOCKER_REGISTRY: Docker Hub is the container registry.
+### Comptes et Services
+- **AWS Account**  
+  Permissions nécessaires :  
+  ✅ EC2 Full Access  
+  ✅ VPC/Subnet Configuration  
+  🔑 Clé SSH enregistrée dans IAM
 
-DOCKER_IMAGE_FRONTEND & BACKEND: Names and tags for Docker images.
+- **Docker Hub**  
+  Compte avec dépôt créé pour :  
+  - `salah/frontend`  
+  - `salah/backend`
 
-AWS_EC2_INSTANCE: SSH connection string to the target EC2 instance.
+- **Jenkins Server**  
+  Plugins installés :  
+  - Docker Pipeline  
+  - Git  
+  - SSH Agent  
+  - Credentials Binding
 
-EC2_PRIVATE_KEY: Jenkins credential ID for the EC2 private key (used to SSH into the EC2 instance securely).
+### Infrastructure
+- **Instance EC2**  
+  - OS : Ubuntu 22.04 LTS  
+  - Configuration minimale : t2.micro  
+  - Ports ouverts : 80 (HTTP), 5000 (Backend)  
+  - Docker Engine installé
 
-🧬 Pipeline Stages
-1️⃣ Clone Repository
+---
 
-stage('Clone Repository') {
-    steps {
-        git branch: 'main', url: 'https://github.com/....git'
+## 📂 Structure du Projet
+
+├── website/ # Frontend (fichiers statiques)
+│ ├── index.html
+│ └── ...
+├── simple_api/ # Backend (API Python/Node)
+│ ├── app.py
+│ └── student_age.json # Fichier de données
+├── Dockerfile # Config Docker pour chaque service
+└── Jenkinsfile # Pipeline CI/CD
+
+
+---
+
+## 🔄 Pipeline CI/CD - Explication Détaillée
+
+### 1. **Intégration Continue (CI)**
+#### 🔹 Clone du Dépôt
+```groovy
+git branch: 'main', 
+url: 'https://github.com/MachiAna404/Devops_RACHCHAD_Ouadie-RACHDI_Anouar-ABDELHADI_Salah.git'
+
+Récupère le code depuis la branche main
+
+🔹 Build des Images Docker (Parallélisé)
+parallel {
+    stage('Frontend') {
+        sh 'docker build -t salah/frontend:1.0 ./website'
+    }
+    stage('Backend') {
+        sh 'docker build -t salah/backend:1.0 ./simple_api'
     }
 }
-Clones the main branch of the GitHub repository.
 
-2️⃣ Build Docker Images (Frontend & Backend in Parallel)
+Construit 2 images séparées avec tags versionnés
 
-stage('Build Docker Images') {
-    parallel {
-        stage('Frontend Image') { ... }
-        stage('Backend Image') { ... }
-    }
+Chaque image inclut :
+
+Frontend : Serveur Nginx + fichiers statiques
+
+Backend : Runtime Python/Node + dépendances
+
+🔹 Push vers Docker Hub
+
+withCredentials([usernamePassword(...)]) {
+    sh 'docker login -u $DOCKER_USER'
+    sh 'docker push salah/frontend:1.0'
+    sh 'docker push salah/backend:1.0'
 }
-Builds Docker images for:
 
-Frontend (./website)
+Utilise des credentials sécurisés stockés dans Jenkins
 
-Backend (./simple_api)
+Publie les images dans le registry Docker Hub
 
-Executed in parallel to speed up the process.
+2. Déploiement Continu (CD)
+🔸 Déploiement sur EC2
 
-3️⃣ Push Images to Docker Hub
+scp -i $EC2_PRIVATE_KEY student_age.json ec2-user@IP:/home/ec2-user/
+ssh -i $EC2_PRIVATE_KEY ec2-user@IP '
+    docker login -u $DOCKER_USERNAME
+    docker pull salah/frontend:1.0
+    docker pull salah/backend:1.0
+    docker stop frontend backend || true
+    docker run -d -p 5000:5000 -v /data --name backend salah/backend:1.0
+    docker run -d -p 80:80 --name frontend salah/frontend:1.0
+    docker cp student_age.json backend:/data
+'
+Étapes clés :
 
-stage('Push Images to Docker Hub') {
-    steps {
-        withCredentials([usernamePassword(...)]) {
-            ...
-        }
-    }
-}
-Authenticates with Docker Hub using Jenkins credentials.
+Copie du fichier JSON via SCP
 
-Pushes both frontend and backend images to the registry.
+Connexion SSH sécurisée
 
-4️⃣ Deploy to AWS EC2
+Mise à jour des conteneurs avec zero-downtime
 
-stage('Deploy to AWS EC2') {
-    steps {
-        withCredentials([usernamePassword(...)]) {
-            ...
-        }
-    }
-}
-This stage handles remote deployment on an EC2 instance:
+Montage de volume pour persistance des données
 
-Secure Copy (scp):
+⚙ Configuration Jenkins
+Variables d Environnement
+Variable	Valeur	Description
+DOCKER_REGISTRY	docker.io	Registry Docker
+AWS_EC2_INSTANCE	ec2-user@IP	User + IP EC2
+EC2_PRIVATE_KEY	credentials()	Clé SSH chiffrée
+Credentials
+Docker Hub
 
-Transfers the student_age.json file to the EC2 instance.
+ID : dockerhub-creds
 
-SSH into EC2:
+Stocke : username + password
 
-Logs in to Docker Hub from the EC2 instance.
+AWS SSH Key
 
-Pulls the latest Docker images.
+ID : AWS_SSH_CREDENTIAL
 
-Stops and removes any existing frontend and backend containers.
+Format : Clé privée PEM
 
-Runs the new containers:
+Étapes clés :
 
-Backend: exposed on port 5000, mounted with data volume.
+Copie du fichier JSON via SCP
 
-Frontend: exposed on port 80.
+Connexion SSH sécurisée
 
-Copies the JSON data file into the backend container using docker cp.
+Mise à jour des conteneurs avec zero-downtime
 
-✅ Post Actions
+Montage de volume pour persistance des données
 
-post {
-    success {
-        echo 'Deployment completed successfully.'
-    }
-    failure {
-        echo 'Deployment failed.'
-    }
-}
-Sends a message to the console after pipeline execution based on success or failure.
+⚙ Configuration Jenkins
+Variables d Environnement
+Variable	Valeur	Description
+DOCKER_REGISTRY	docker.io	Registry Docker
+AWS_EC2_INSTANCE	ec2-user@IP	User + IP EC2
+EC2_PRIVATE_KEY	credentials()	Clé SSH chiffrée
+Credentials
+Docker Hub
 
-🔐 Jenkins Credentials Required
-Make sure the following Jenkins credentials are set up:
+ID : dockerhub-creds
 
-dockerhub-creds: Docker Hub username and password.
+Stocke : username + password
 
-AWS_SSH_CREDENTIAL: Private key used for SSH access to the EC2 instance.
+AWS SSH Key
 
-💡 Summary
-This pipeline:
+ID : AWS_SSH_CREDENTIAL
 
-Automates the entire CI/CD process.
-
-Builds and pushes Docker images.
-
-Connects to an EC2 instance and deploys the containers.
-
-Ensures smooth and repeatable deployment without manual intervention.
-
-This setup is ideal for projects that follow a microservice architecture and need a reliable, production-like deployment flow.
+Format : Clé privée PEM
