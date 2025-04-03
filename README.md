@@ -191,4 +191,59 @@ curl -u root:root -X GET http://localhost:5000/supmit/api/v1.0/get_student_ages/
 ![6](https://github.com/user-attachments/assets/8133ed1b-6713-4356-9779-f87fedefbed2)
 ---
 
- 
+ ## Prérequis
+
+- Un compte AWS avec les permissions nécessaires pour créer et gérer des instances EC2.
+- Un compte Docker Hub pour stocker les images Docker.
+- Jenkins installé et configuré avec les plugins nécessaires (Docker, Git, SSH, etc.).
+- Git pour la gestion du code source.
+- Une instance EC2 Ubuntu configurée avec Docker.
+
+## Structure du Projet
+
+- **`website/`** : Contient les fichiers de l'application frontend.
+- **`simple_api/`** : Contient les fichiers de l'application backend.
+- **`Dockerfile`** : Fichier de configuration pour la construction des images Docker.
+- **`Jenkinsfile`** : Script définissant les étapes du pipeline CI/CD.
+- **`student_age.json`** : Fichier de données utilisé par l'application backend.
+
+## Étapes du Pipeline CI/CD
+
+### 1. Intégration Continue (CI)
+
+- **Clone du dépôt** : Récupération du code source depuis le dépôt Git.
+- **Build des images Docker** : Construction des images Docker pour le frontend et le backend.
+- **Tests** : Vérification du bon fonctionnement des images Docker.
+- **Release** : Envoi des images Docker sur Docker Hub.
+
+### 2. Déploiement Continu (CD)
+
+- **Déploiement sur AWS EC2** : 
+  - Connexion à l'instance EC2.
+  - Récupération des images Docker depuis Docker Hub.
+  - Arrêt et suppression des conteneurs existants.
+  - Démarrage des nouveaux conteneurs avec les images mises à jour.
+  - Copie des fichiers de données nécessaires.
+
+## Configuration Jenkins
+
+### Variables d'environnement
+
+- **`DOCKER_REGISTRY`** : Registre Docker (par défaut `docker.io`).
+- **`DOCKER_IMAGE_FRONTEND`** et **`DOCKER_IMAGE_BACKEND`** : Noms des images Docker.
+- **`AWS_EC2_INSTANCE`** : Adresse de l'instance EC2.
+- **`EC2_PRIVATE_KEY`** : Clé SSH pour se connecter à l'instance EC2 (stockée dans les credentials Jenkins).
+
+### Credentials Jenkins
+
+- **`dockerhub-creds`** : Identifiants Docker Hub (username et password).
+- **`AWS_SSH_CREDENTIAL`** : Clé privée SSH pour l'accès à l'instance EC2.
+
+## Déploiement Automatisé
+
+Le pipeline Jenkins exécute les étapes suivantes :
+
+1. Clone le dépôt Git.
+2. Construit les images Docker pour le frontend et le backend.
+3. Pousse les images sur Docker Hub.
+4. Se connecte à l'instance EC2 et déploie les conteneurs Docker.
